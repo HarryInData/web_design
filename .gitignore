@@ -1,0 +1,8 @@
+# Ignore the large zip archive (exceeds GitHub's 100MB limit)
+frames_24fps.zip
+
+# System/IDE files
+.DS_Store
+Thumbs.db
+.gemini/
+.agents/

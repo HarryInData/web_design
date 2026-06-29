@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÆTHERIS | The Zenith of Haute Horlogerie</title>
+    <meta name="description" content="Experience the masterpiece of micro-engineering. The Ætheris Chronograph integrates Grade 5 titanium, 18k gold, and a double-axis flying tourbillon in an unmatched luxury timepiece.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Inter:wght@300;400;500;600&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-ring" id="custom-cursor-ring"></div>
+    <div class="cursor-dot" id="custom-cursor-dot"></div>
+
+    <!-- Luxury Preloader -->
+    <div class="preloader" id="site-preloader">
+        <div class="preloader-content">
+            <div class="brand-logo-large">ÆTHERIS</div>
+            <div class="dial-container">
+                <svg class="loading-dial" viewBox="0 0 100 100">
+                    <circle class="dial-bg" cx="50" cy="50" r="45"></circle>
+                    <circle class="dial-progress" id="loading-progress-circle" cx="50" cy="50" r="45" stroke-dasharray="283" stroke-dashoffset="283"></circle>
+                </svg>
+                <div class="loading-percentage" id="loading-text">0%</div>
+            </div>
+            <div class="loading-status" id="loading-status-msg">CALIBRATING CHRONOGRAPH MOVEMENT...</div>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="nav-header">
+        <div class="nav-container">
+            <a href="#" class="nav-logo hover-trigger">ÆTHERIS</a>
+            <nav class="nav-menu">
+                <a href="#hero-scroll" class="nav-link hover-trigger">Collection</a>
+                <a href="#specifications" class="nav-link hover-trigger">Specifications</a>
+                <a href="#craftsmanship" class="nav-link hover-trigger">Craftsmanship</a>
+                <a href="#customizer" class="nav-link hover-trigger">Bespoke</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="#reservation" class="btn-primary hover-trigger" id="nav-cta-btn">RESERVE TIMEPIECE</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        
+        <!-- Hero Section with Sticky Canvas -->
+        <section class="hero-scroll" id="hero-scroll">
+            <div class="canvas-container">
+                <canvas id="watch-canvas"></canvas>
+                
+                <!-- Scroll Progress Dial Overlay -->
+                <div class="scroll-tracker">
+                    <div class="scroll-tracker-label">CHRONO-MIGRATION</div>
+                    <div class="scroll-tracker-bar">
+                        <div class="scroll-tracker-fill" id="scroll-bar-fill"></div>
+                    </div>
+                    <div class="scroll-tracker-value" id="scroll-frame-val">FRAME: 000 / 239</div>
+                </div>
+
+                <!-- Overlay Slides (Animated by Scroll in JS) -->
+                <div class="slides-wrapper">
+                    <!-- Slide 1: Introduction -->
+                    <div class="slide active" id="slide-1" data-start="0" data-end="45">
+                        <span class="slide-tag">THE INCEPTION</span>
+                        <h1 class="slide-title">Ætheris Chronograph</h1>
+                        <p class="slide-subtitle">A seamless marriage of astronomical precision and architectural mastery. Crafted for the absolute collector.</p>
+                        <div class="scroll-prompt">
+                            <span class="mouse-icon">
+                                <span class="mouse-wheel"></span>
+                            </span>
+                            <span class="scroll-prompt-text">Scroll to dissect movement</span>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: Case Materials -->
+                    <div class="slide" id="slide-2" data-start="55" data-end="95">
+                        <span class="slide-tag">MATERIAL SCIENCE</span>
+                        <h2 class="slide-title">Sculpted Gold & Titanium</h2>
+                        <p class="slide-subtitle">A casing sculpted from Grade 5 polished titanium, flanked by deep-brushed 18k Rose Gold pillars. Engineered to survive 100 meters of pressure with complete structural integrity.</p>
+                    </div>
+
+                    <!-- Slide 3: Movement & Caliber -->
+                    <div class="slide" id="slide-3" data-start="105" data-end="145">
+                        <span class="slide-tag">HOROLOGICAL CALIBER</span>
+                        <h2 class="slide-title">Caliber A-90 Tourbillon</h2>
+                        <p class="slide-subtitle">Driven by a flying, double-axis tourbillon rotating in perfect orbital synergy. 240 micro-components hand-adjusted to 1/1000th of a millimeter, operating at 28,800 vibrations per hour.</p>
+                    </div>
+
+                    <!-- Slide 4: Dial Design -->
+                    <div class="slide" id="slide-4" data-start="155" data-end="195">
+                        <span class="slide-tag">OBSIDIAN SAPPHIRE</span>
+                        <h2 class="slide-title">The Depths of Clarity</h2>
+                        <p class="slide-subtitle">The multi-layered skeletal dial is carved from custom smoky sapphire. It exposes the mainspring barrel and perpetual escape mechanism, suspended in three-dimensional space.</p>
+                    </div>
+
+                    <!-- Slide 5: CTA / Final -->
+                    <div class="slide" id="slide-5" data-start="205" data-end="240">
+                        <span class="slide-tag">THE RESERVE</span>
+                        <h2 class="slide-title">Time Unbound</h2>
+                        <p class="slide-subtitle">Owning an Ætheris is not merely about tracking time—it is about commanding it. Discover the bespoke customizer below or reserve your private Geneva salon viewing.</p>
+                        <div class="slide-cta-row">
+                            <a href="#customizer" class="btn-secondary hover-trigger">Customize Strap</a>
+                            <a href="#reservation" class="btn-primary hover-trigger">Reserve Viewing</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Extra scroll height driver (This element dictates the length of scroll animation) -->
+            <div class="scroll-height-driver"></div>
+        </section>
+
+        <!-- Technical Specifications Section -->
+        <section class="specifications" id="specifications">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-tag">ENGINEERING SHEET</span>
+                    <h2 class="section-title">Technical Specifications</h2>
+                    <p class="section-desc">A deep dive into the mechanical parameters of Swiss precision. Hover details to isolate components.</p>
+                </div>
+                
+                <div class="specs-layout">
+                    <!-- Left Column: Schematic Drawing -->
+                    <div class="specs-schematic">
+                        <div class="schematic-wrapper">
+                            <!-- Abstract SVG Clockwork/Watch Vector representation -->
+                            <svg class="watch-schematic-svg" viewBox="0 0 400 400" id="spec-svg-schematic">
+                                <circle cx="200" cy="200" r="180" class="schematic-ring outer"></circle>
+                                <circle cx="200" cy="200" r="160" class="schematic-ring inner"></circle>
+                                <g class="schematic-gears">
+                                    <!-- Center gear -->
+                                    <circle cx="200" cy="200" r="50" class="gear-center"></circle>
+                                    <path d="M 200,140 L 200,260 M 140,200 L 260,200 M 157.5,157.5 L 242.5,242.5 M 157.5,242.5 L 242.5,157.5" class="gear-spokes"></path>
+                                    <!-- Teeth -->
+                                    <circle cx="200" cy="200" r="45" class="gear-teeth-inner" stroke-dasharray="6, 4"></circle>
+                                </g>
+                                <g class="schematic-secondary-gear">
+                                    <circle cx="280" cy="200" r="30" class="gear-center-small"></circle>
+                                    <circle cx="280" cy="200" r="25" class="gear-teeth-small" stroke-dasharray="4, 3"></circle>
+                                </g>
+                                <g class="schematic-hands">
+                                    <!-- Tourbillon cage indication / Hands -->
+                                    <line x1="200" y1="200" x2="200" y2="85" class="schematic-hand hour" id="schematic-hour-hand"></line>
+                                    <line x1="200" y1="200" x2="290" y2="200" class="schematic-hand minute" id="schematic-minute-hand"></line>
+                                    <circle cx="200" cy="200" r="6" class="center-pin"></circle>
+                                </g>
+                                <!-- Interactive highlight circle -->
+                                <circle id="schematic-highlight" cx="200" cy="200" r="0" class="highlight-indicator"></circle>
+                            </svg>
+                            <div class="schematic-label" id="schematic-active-label">CALIBER A-90 MOVEMENT</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column: Interactive Specs Table -->
+                    <div class="specs-table-container">
+                        <div class="specs-list">
+                            <!-- Spec Item 1 -->
+                            <div class="spec-item hover-trigger active" data-highlight="movement" id="spec-movement">
+                                <div class="spec-index">01</div>
+                                <div class="spec-details">
+                                    <h3 class="spec-name">The Movement</h3>
+                                    <span class="spec-value">In-house Caliber A-90 Automatic</span>
+                                </div>
+                                <div class="spec-description">
+                                    Flying double-axis tourbillon, 240 parts, 28,800 vph, hand-chamfered bridges, gold rotor.
+                                </div>
+                            </div>
+                            
+                            <!-- Spec Item 2 -->
+                            <div class="spec-item hover-trigger" data-highlight="case" id="spec-case">
+                                <div class="spec-index">02</div>
+                                <div class="spec-details">
+                                    <h3 class="spec-name">Case Structure</h3>
+                                    <span class="spec-value">Grade 5 Titanium & 18k Rose Gold</span>
+                                </div>
+                                <div class="spec-description">
+                                    42mm diameter, 13.5mm thickness, sapphire exhibition back, integrated gold lugs.
+                                </div>
+                            </div>
+                            
+                            <!-- Spec Item 3 -->
+                            <div class="spec-item hover-trigger" data-highlight="dial" id="spec-dial">
+                                <div class="spec-index">03</div>
+                                <div class="spec-details">
+                                    <h3 class="spec-name">Dial & Glass</h3>
+                                    <span class="spec-value">Smoky Obsidian Sapphire</span>
+                                </div>
+                                <div class="spec-description">
+                                    Anti-reflective double-curved sapphire, skeletal index rings, luminous rose gold hands.
+                                </div>
+                            </div>
+                            
+                            <!-- Spec Item 4 -->
+                            <div class="spec-item hover-trigger" data-highlight="reserve" id="spec-reserve">
+                                <div class="spec-index">04</div>
+                                <div class="spec-details">
+                                    <h3 class="spec-name">Power Reserve</h3>
+                                    <span class="spec-value">72 Hours Bidirectional</span>
+                                </div>
+                                <div class="spec-description">
+                                    Dual spring barrels, wound by high-density tungsten winding mass with safety clutch.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parallax Storytelling: Craftsmanship -->
+        <section class="craftsmanship" id="craftsmanship">
+            <div class="section-container">
+                <div class="section-header center">
+                    <span class="section-tag">THE HERITAGE</span>
+                    <h2 class="section-title">The Art of Assembly</h2>
+                    <p class="section-desc">Every timepiece undergoes weeks of rigorous hand-finishing, regulation, and testing in our Geneva studio.</p>
+                </div>
+                
+                <div class="cards-grid">
+                    <!-- Card 1 -->
+                    <div class="story-card hover-trigger" id="craft-material">
+                        <div class="story-card-bg card-bg-1"></div>
+                        <div class="story-card-overlay"></div>
+                        <div class="story-card-content">
+                            <span class="card-num">I</span>
+                            <h3 class="card-title">Metallurgical Alchemy</h3>
+                            <p class="card-desc">Blending Grade 5 titanium with an exclusive 18k rose gold alloy, achieving high structural tensile strength and a warm bronze glow.</p>
+                            <span class="card-link">Explore Materials &rarr;</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="story-card hover-trigger" id="craft-precision">
+                        <div class="story-card-bg card-bg-2"></div>
+                        <div class="story-card-overlay"></div>
+                        <div class="story-card-content">
+                            <span class="card-num">II</span>
+                            <h3 class="card-title">Hand-Bevelling</h3>
+                            <p class="card-desc">Every bridge, plate, and tooth is polished manually using gentian wood pegs. A finish that machine automation can never match.</p>
+                            <span class="card-link">Meet the Artisans &rarr;</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="story-card hover-trigger" id="craft-regulation">
+                        <div class="story-card-bg card-bg-3"></div>
+                        <div class="story-card-overlay"></div>
+                        <div class="story-card-content">
+                            <span class="card-num">III</span>
+                            <h3 class="card-title">Chronometric Verification</h3>
+                            <p class="card-desc">Adjusted in 5 dynamic positions over a period of 15 days to ensure deviation stays within -2/+2 seconds per day.</p>
+                            <span class="card-link">Chronometer Standards &rarr;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Customizer Section -->
+        <section class="customizer" id="customizer">
+            <div class="section-container">
+                <div class="customizer-layout">
+                    <!-- Left: Live Customizer Preview Card -->
+                    <div class="customizer-preview">
+                        <div class="preview-stage">
+                            <!-- Glowing background effect -->
+                            <div class="glow-orb"></div>
+                            
+                            <!-- Static Watch Mockup Face representing configured choices -->
+                            <div class="watch-mockup-container">
+                                <!-- Strap Render Elements -->
+                                <div class="watch-strap-render top" id="strap-render-top"></div>
+                                <div class="watch-strap-render bottom" id="strap-render-bottom"></div>
+                                
+                                <!-- Watch Case and Dial Vector Graphic -->
+                                <div class="watch-case-render">
+                                    <div class="bezel-highlight"></div>
+                                    <div class="dial-accent-dot" id="dial-accent-render"></div>
+                                    <div class="dial-center-rotor"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Configurator Selector Controls -->
+                    <div class="customizer-controls">
+                        <span class="section-tag">BESPOKE STUDIO</span>
+                        <h2 class="section-title">Configure Your Ætheris</h2>
+                        <p class="section-desc">Tailor strap materials and structural finishes. Each selection modifies aesthetics and pricing.</p>
+                        
+                        <!-- Control Group 1: Strap selection -->
+                        <div class="control-group">
+                            <h3 class="group-label">1. Select Strap Material</h3>
+                            <div class="options-grid">
+                                <button class="option-btn hover-trigger active" data-strap="titanium" data-price="$42,500" data-label="Brushed Oyster Titanium">
+                                    <span class="option-color color-titanium"></span>
+                                    <span class="option-name">Oyster Titanium</span>
+                                    <span class="option-delta">Standard</span>
+                                </button>
+                                <button class="option-btn hover-trigger" data-strap="leather" data-price="$44,200" data-label="Midnight Crocodile Leather">
+                                    <span class="option-color color-leather"></span>
+                                    <span class="option-name">Crocodile Leather</span>
+                                    <span class="option-delta">+$1,700</span>
+                                </button>
+                                <button class="option-btn hover-trigger" data-strap="rubber" data-price="$41,800" data-label="Matte Vulcanized Rubber">
+                                    <span class="option-color color-rubber"></span>
+                                    <span class="option-name">Obsidian Rubber</span>
+                                    <span class="option-delta">-$700</span>
+                                </button>
+                                <button class="option-btn hover-trigger" data-strap="gold" data-price="$48,900" data-label="Brushed 18k Rose Gold Link">
+                                    <span class="option-color color-gold"></span>
+                                    <span class="option-name">Rose Gold Link</span>
+                                    <span class="option-delta">+$6,400</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Control Group 2: Dial accent ring -->
+                        <div class="control-group">
+                            <h3 class="group-label">2. Dial Accent Finish</h3>
+                            <div class="options-grid horizontal">
+                                <button class="option-accent hover-trigger active" data-accent="gold" data-label="Warm Rose Gold Accents">
+                                    <span class="accent-dot dot-gold"></span>
+                                    <span>Rose Gold</span>
+                                </button>
+                                <button class="option-accent hover-trigger" data-accent="titanium" data-label="Anodized Platinum Accents">
+                                    <span class="accent-dot dot-titanium"></span>
+                                    <span>Platinum</span>
+                                </button>
+                                <button class="option-accent hover-trigger" data-accent="stealth" data-label="Stealth Obsidian Accents">
+                                    <span class="accent-dot dot-stealth"></span>
+                                    <span>Stealth Noir</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Price and Summary details -->
+                        <div class="config-summary">
+                            <div class="summary-specs">
+                                <div class="summary-line"><span class="summary-prop">Bespoke Config:</span> <span class="summary-val" id="summary-strap-label">Brushed Oyster Titanium</span></div>
+                                <div class="summary-line"><span class="summary-prop">Accent Detailing:</span> <span class="summary-val" id="summary-accent-label">Warm Rose Gold Accents</span></div>
+                            </div>
+                            <div class="summary-pricing">
+                                <div class="price-label">ESTIMATED VALUATION</div>
+                                <div class="price-value" id="summary-price-val">$42,500 USD</div>
+                            </div>
+                        </div>
+
+                        <a href="#reservation" class="btn-primary hover-trigger fill-width" id="reserve-configured-btn">RESERVE THIS CONFIGURATION</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Private Reservation Form Section -->
+        <section class="reservation" id="reservation">
+            <div class="section-container narrow">
+                <div class="section-header center">
+                    <span class="section-tag">ACQUISITION</span>
+                    <h2 class="section-title">Request Private Viewing</h2>
+                    <p class="section-desc">Ætheris timepieces are issued in limited numbered editions of 50. Submit your credentials to request an exclusive viewing or reserve a configuration.</p>
+                </div>
+                
+                <!-- Reservation Form -->
+                <form class="reservation-form" id="booking-form" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="input-name" class="form-label">Full Name</label>
+                            <input type="text" id="input-name" class="form-input hover-trigger" placeholder="e.g. Sterling Archer" required>
+                            <span class="form-error" id="error-name">Please provide your name.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-email" class="form-label">Email Address</label>
+                            <input type="email" id="input-email" class="form-input hover-trigger" placeholder="e.g. sterling@aetheris.com" required>
+                            <span class="form-error" id="error-email">Please enter a valid email address.</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="select-salon" class="form-label">Salon Location</label>
+                            <select id="select-salon" class="form-select hover-trigger">
+                                <option value="geneva">Geneva Showroom (Switzerland)</option>
+                                <option value="newyork">New York Salon (United States)</option>
+                                <option value="tokyo">Tokyo Boutique (Japan)</option>
+                                <option value="london">London Studio (United Kingdom)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-date" class="form-label">Preferred Date</label>
+                            <input type="date" id="input-date" class="form-input hover-trigger" required>
+                            <span class="form-error" id="error-date">Please pick a preferred date.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="input-message" class="form-label">Bespoke Specifications or Requests</label>
+                        <textarea id="input-message" class="form-textarea hover-trigger" rows="4" placeholder="Mention any customizations, sizing parameters, or special security protocols needed..."></textarea>
+                    </div>
+
+                    <!-- Selected Configuration Hidden Fields representation -->
+                    <div class="form-configured-badge" id="form-badge-container" style="display:none;">
+                        <span class="badge-label">Selected Configuration:</span>
+                        <span class="badge-text" id="form-badge-text">Brushed Oyster Titanium / Warm Rose Gold</span>
+                    </div>
+
+                    <div class="form-submit-row">
+                        <button type="submit" class="btn-primary hover-trigger large" id="form-submit-btn">
+                            <span class="btn-text">SUBMIT ACQUISITION REQUEST</span>
+                            <span class="btn-spinner" id="form-spinner"></span>
+                        </button>
+                    </div>
+                    
+                    <div class="form-success-alert" id="form-success-msg">
+                        <div class="success-icon">&checkmark;</div>
+                        <div class="success-content">
+                            <h4 class="success-title">Viewing Requested Successfully</h4>
+                            <p class="success-desc">An Ætheris Private Advisor will contact you within 24 hours to coordinate logistics and confirm credentials.</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">ÆTHERIS</div>
+                <p class="footer-tagline">Architects of Celestial Precision.</p>
+            </div>
+            
+            <div class="footer-links-grid">
+                <div class="footer-col">
+                    <h4 class="footer-heading">Collections</h4>
+                    <ul class="footer-list">
+                        <li><a href="#hero-scroll" class="hover-trigger">The Tourbillon</a></li>
+                        <li><a href="#" class="hover-trigger">Aero-Chrono</a></li>
+                        <li><a href="#" class="hover-trigger">Super-Deep Dive</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-heading">Maison</h4>
+                    <ul class="footer-list">
+                        <li><a href="#craftsmanship" class="hover-trigger">Heritage</a></li>
+                        <li><a href="#" class="hover-trigger">Artisans</a></li>
+                        <li><a href="#" class="hover-trigger">Press Salon</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-heading">Inquiries</h4>
+                    <ul class="footer-list">
+                        <li><a href="#reservation" class="hover-trigger">Schedule Viewing</a></li>
+                        <li><a href="#" class="hover-trigger">Corporate HQ</a></li>
+                        <li><a href="#" class="hover-trigger">Service & Valuations</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <div class="footer-copyright">&copy; 2026 ÆTHERIS Horlogerie S.A. All rights reserved. Crafted by Antigravity.</div>
+                <div class="footer-legal-links">
+                    <a href="#" class="hover-trigger">Privacy & Security</a>
+                    <span class="divider">&middot;</span>
+                    <a href="#" class="hover-trigger">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript File -->
+    <script src="index.js" defer></script>
+</body>
+</html>
